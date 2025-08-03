@@ -1,5 +1,6 @@
 /* comment-box.component.css */
 .comment-box {
+  display: grid;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
@@ -59,10 +60,6 @@
   color: #64748b;
   line-height: 1.6;
 }
-/* .comment-box__text::placeholder {
-  color: #0056b3;
-} */
-
 .comment-box__actions {
   margin-top: 4px;
   margin-left: auto;
@@ -147,6 +144,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .comment-box {
+    display: grid;
     padding: 12px;
   }
 
@@ -166,5 +164,24 @@
 
   .comment-box__nested {
     margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comment-box {
+    display: grid;
+  }
+  .comment-box__main {
+    display: grid;
+  }
+
+  .comment-box__vote {
+    order: 1;
+    margin-top: -43px;
+  }
+
+  .comment-box__actions {
+    z-index: 10; /* Higher than vote buttons */
+    position: relative;
   }
 }
