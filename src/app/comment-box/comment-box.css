@@ -59,6 +59,9 @@
   color: #64748b;
   line-height: 1.6;
 }
+/* .comment-box__text::placeholder {
+  color: #0056b3;
+} */
 
 .comment-box__actions {
   margin-top: 4px;

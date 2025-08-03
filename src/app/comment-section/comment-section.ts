@@ -192,17 +192,27 @@ export class CommentSection implements OnInit {
     }
   }
 
+  private userUpvotes = new Set<number>();
+
   private handleUpvote(commentId: number) {
     const comment = this.findCommentById(commentId);
-    if (comment) {
+    if (!comment) return;
+
+    // Only allow upvote if user hasn't upvoted yet
+    if (!this.userUpvotes.has(commentId)) {
       comment.score++;
+      this.userUpvotes.add(commentId);
     }
   }
 
   private handleDownvote(commentId: number) {
     const comment = this.findCommentById(commentId);
-    if (comment) {
+    if (!comment) return;
+
+    // Only works if user has upvoted
+    if (this.userUpvotes.has(commentId)) {
       comment.score--;
+      this.userUpvotes.delete(commentId);
     }
   }
 

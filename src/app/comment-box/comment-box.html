@@ -82,7 +82,7 @@
       [replyingTo]="comment.user.username"
       [parentId]="comment.id"
       (submit)="onReplySubmit($event)"
-      placeholder="Reply to @{{ comment.user.username }}"
+      [placeholder]="'Reply to @' + comment.user.username"
     >
     </app-comment-form>
   </div>
