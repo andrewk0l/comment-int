@@ -1,0 +1,22 @@
+<div class="vote-button">
+  <button class="vote-button__btn vote-button__btn--up" (click)="onUpvote()">
+    <img
+      src="../../assets/images/icon-plus.svg"
+      alt="Upvote"
+      class="vote-button__icon"
+    />
+  </button>
+
+  <span class="vote-button__score">{{ score }}</span>
+
+  <button
+    class="vote-button__btn vote-button__btn--down"
+    (click)="onDownvote()"
+  >
+    <img
+      src="../../assets/images/icon-minus.svg"
+      alt="Downvote"
+      class="vote-button__icon"
+    />
+  </button>
+</div>

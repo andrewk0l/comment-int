@@ -1,0 +1,43 @@
+<div class="comment-actions">
+  <!-- Reply button - visible to everyone except comment owner -->
+  <button
+    *ngIf="canReply"
+    class="comment-actions__btn comment-actions__btn--reply"
+    (click)="onReply()"
+  >
+    <img
+      src="../../assets/images/icon-reply.svg"
+      alt=""
+      class="comment-actions__icon"
+    />
+    Reply
+  </button>
+
+  <!-- Edit button - only visible to comment owner -->
+  <button
+    *ngIf="canEdit"
+    class="comment-actions__btn comment-actions__btn--edit"
+    (click)="onEdit()"
+  >
+    <img
+      src="../../assets/images/icon-edit.svg"
+      alt=""
+      class="comment-actions__icon"
+    />
+    Edit
+  </button>
+
+  <!-- Delete button - only visible to comment owner -->
+  <button
+    *ngIf="canDelete"
+    class="comment-actions__btn comment-actions__btn--delete"
+    (click)="onDelete()"
+  >
+    <img
+      src="../../assets/images/icon-delete.svg"
+      alt=""
+      class="comment-actions__icon"
+    />
+    Delete
+  </button>
+</div>

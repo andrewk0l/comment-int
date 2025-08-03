@@ -1,0 +1,48 @@
+<div class="comment-section">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="comment-section__loading">
+    <p>Loading comments...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="comment-section__error">
+    <p>{{ error }}</p>
+    <button (click)="loadCommentData()" class="comment-section__retry-btn">
+      Try Again
+    </button>
+  </div>
+
+  <!-- Comments Content -->
+  <div *ngIf="!loading && !error">
+    <!-- Comments List -->
+    <div class="comment-section__comments">
+      <app-comment-box
+        *ngFor="let comment of comments"
+        [comment]="comment"
+        [currentUser]="currentUser"
+        [editingCommentId]="editingCommentId"
+        (commentEvent)="onCommentEvent($event)"
+        (editUpdate)="onEditUpdate($event.commentId, $event.content)"
+        (editCancel)="onEditCancel()"
+      >
+      </app-comment-box>
+    </div>
+
+    <!-- New Comment Form -->
+    <div class="comment-section__new-comment">
+      <app-comment-form
+        [currentUser]="currentUser"
+        mode="new"
+        (submit)="onNewComment($event)"
+      >
+      </app-comment-form>
+    </div>
+  </div>
+  <!-- Delete Confirmation Modal -->
+  <app-deletemodal
+    [isVisible]="showDeleteModal"
+    (confirm)="onDeleteConfirm()"
+    (cancel)="onDeleteCancel()"
+  >
+  </app-deletemodal>
+</div>

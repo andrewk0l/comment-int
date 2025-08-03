@@ -1,0 +1,37 @@
+<form class="comment-form" (ngSubmit)="onSubmit()">
+  <div class="comment-form__container">
+    <!-- User Avatar -->
+    <app-user-avatar
+      [user]="currentUser"
+      size="medium"
+      class="comment-form__avatar"
+    >
+    </app-user-avatar>
+
+    <!-- Text Input Area -->
+    <div class="comment-form__input-container">
+      <textarea
+        name="commentContent"
+        #textarea
+        [(ngModel)]="commentContent"
+        [placeholder]="effectivePlaceholder"
+        class="comment-form__textarea"
+        (input)="onTextareaInput($event)"
+        rows="3"
+      >
+      </textarea>
+
+      <!-- Action Buttons -->
+      <div class="comment-form__actions">
+        <!-- Submit button -->
+        <button
+          type="submit"
+          class="comment-form__btn comment-form__btn--submit"
+          [disabled]="!canSubmit"
+        >
+          {{ submitButtonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

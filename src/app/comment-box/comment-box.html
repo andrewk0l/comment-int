@@ -1,0 +1,107 @@
+<div class="comment-box">
+  <!-- Main Comment -->
+  <div class="comment-box__main">
+    <!-- Vote Button -->
+    <app-vote-button
+      [score]="comment.score"
+      [commentId]="comment.id"
+      (upvote)="onUpvote($event)"
+      (downvote)="onDownvote($event)"
+      class="comment-box__vote"
+    >
+    </app-vote-button>
+
+    <!-- Comment Content -->
+    <div class="comment-box__content">
+      <!-- Header with user info and timestamp -->
+      <div class="comment-box__header">
+        <app-user-avatar
+          [user]="comment.user"
+          size="small"
+          class="comment-box__avatar"
+        >
+        </app-user-avatar>
+
+        <span class="comment-box__username">{{ comment.user.username }}</span>
+
+        <!-- Current user badge -->
+        <span
+          *ngIf="comment.user.username === currentUser.username"
+          class="comment-box__current-user-badge"
+        >
+          you
+        </span>
+
+        <span class="comment-box__timestamp">{{ comment.createdAt }}</span>
+        <app-comment-actions
+          *ngIf="!isEditing"
+          [commentId]="comment.id"
+          [commentUser]="comment.user"
+          [currentUser]="currentUser"
+          (reply)="onReply($event)"
+          (edit)="onEdit($event)"
+          (delete)="onDelete($event)"
+          class="comment-box__actions"
+        >
+        </app-comment-actions>
+      </div>
+
+      <!-- Comment Text -->
+      <div *ngIf="!isEditing" class="comment-box__text">
+        {{ comment.content }}
+      </div>
+      <div *ngIf="isEditing" class="comment-box__edit">
+        <textarea
+          [(ngModel)]="editContent"
+          class="comment-box__edit-textarea"
+          (focus)="onEditStart()"
+          rows="3"
+          placeholder="{{ comment.content }}"
+        ></textarea>
+
+        <div class="comment-box__edit-actions">
+          <button
+            class="comment-box__edit-btn comment-box__edit-btn--update"
+            (click)="onEditUpdate()"
+            [disabled]="!editContent.trim()"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+
+      <!-- Actions -->
+    </div>
+  </div>
+
+  <!-- Reply Form (shown when replying) -->
+  <div *ngIf="showReplyForm" class="comment-box__reply-form">
+    <app-comment-form
+      [currentUser]="currentUser"
+      mode="reply"
+      [replyingTo]="comment.user.username"
+      [parentId]="comment.id"
+      (submit)="onReplySubmit($event)"
+      placeholder="Reply to @{{ comment.user.username }}"
+    >
+    </app-comment-form>
+  </div>
+
+  <!-- Nested Replies -->
+  <div
+    *ngIf="comment.replies && comment.replies.length > 0"
+    class="comment-box__replies"
+  >
+    <app-comment-box
+      *ngFor="let reply of comment.replies"
+      [comment]="reply"
+      [currentUser]="currentUser"
+      [editingCommentId]="editingCommentId"
+      (commentEvent)="onNestedCommentEvent($event)"
+      (editUpdate)="editUpdate.emit($event)"
+      (editCancel)="editCancel.emit()"
+      class="comment-box__nested"
+    >
+    </app-comment-box>
+  </div>
+</div>
