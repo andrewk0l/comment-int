@@ -16,6 +16,7 @@
   font-size: 16px;
   font-weight: 700;
   transition: all 0.2s ease;
+  font-family: "Rubik", sans-serif;
 }
 
 .comment-actions__btn:hover {
