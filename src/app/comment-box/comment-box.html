@@ -33,6 +33,19 @@
         </span>
 
         <span class="comment-box__timestamp">{{ comment.createdAt }}</span>
+        <div class="actions-desktop">
+          <app-comment-actions
+            *ngIf="!isEditing"
+            [commentId]="comment.id"
+            [commentUser]="comment.user"
+            [currentUser]="currentUser"
+            (reply)="onReply($event)"
+            (edit)="onEdit($event)"
+            (delete)="onDelete($event)"
+            class="comment-box__actions"
+          >
+          </app-comment-actions>
+        </div>
       </div>
 
       <!-- Comment Text -->
@@ -61,17 +74,19 @@
 
       <!-- Actions -->
     </div>
-    <app-comment-actions
-      *ngIf="!isEditing"
-      [commentId]="comment.id"
-      [commentUser]="comment.user"
-      [currentUser]="currentUser"
-      (reply)="onReply($event)"
-      (edit)="onEdit($event)"
-      (delete)="onDelete($event)"
-      class="comment-box__actions"
-    >
-    </app-comment-actions>
+    <div class="actions-mobile">
+      <app-comment-actions
+        *ngIf="!isEditing"
+        [commentId]="comment.id"
+        [commentUser]="comment.user"
+        [currentUser]="currentUser"
+        (reply)="onReply($event)"
+        (edit)="onEdit($event)"
+        (delete)="onDelete($event)"
+        class="comment-box__actions"
+      >
+      </app-comment-actions>
+    </div>
   </div>
 
   <!-- Reply Form (shown when replying) -->

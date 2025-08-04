@@ -140,6 +140,14 @@
   outline: 2px solid #007bff;
   outline-offset: 2px;
 }
+.actions-mobile {
+  display: none;
+}
+
+.actions-desktop {
+  display: flex;
+  margin-left: auto;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -183,5 +191,13 @@
   .comment-box__actions {
     z-index: 10; /* Higher than vote buttons */
     position: relative;
+  }
+
+  .actions-mobile {
+    display: flex;
+  }
+
+  .actions-desktop {
+    display: none;
   }
 }

@@ -30,7 +30,7 @@
 }
 
 .comment-actions__btn--reply {
-  color: #5457b6;
+  color: hsl(238, 40%, 52%);
 }
 
 .comment-actions__btn--reply:hover {
@@ -38,7 +38,7 @@
 }
 
 .comment-actions__btn--edit {
-  color: #5457b6;
+  color: hsl(238, 40%, 52%);
 }
 
 .comment-actions__btn--edit:hover {
@@ -46,7 +46,7 @@
 }
 
 .comment-actions__btn--delete {
-  color: #ed6368;
+  color: hsl(358, 79%, 66%);
 }
 
 .comment-actions__btn--delete:hover {
